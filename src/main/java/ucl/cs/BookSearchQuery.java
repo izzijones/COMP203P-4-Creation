@@ -1,7 +1,7 @@
 package ucl.cs;
 
-import ucl.cs.catalogues.BritishLibraryCatalogue;
 import java.util.List;
+import ucl.cs.catalogues.Catalogue;
 
 public class BookSearchQuery {
 
@@ -19,7 +19,7 @@ public class BookSearchQuery {
     this.date2 = p5;
   }
 
-  public List<Book> execute() {
+  public List<Book> execute(Catalogue catalogue) {
     StringBuffer query = new StringBuffer();
     if (name1 != null) {
       query.append("FIRSTNAME='").append(name1).append("' ");
@@ -36,6 +36,6 @@ public class BookSearchQuery {
     if (date2 != null) {
       query.append("PUBLISHEDBEFORE(").append(date2).append(") ");
     }
-    return new BritishLibraryCatalogue().searchFor(query.toString());
+    return catalogue.searchFor(query.toString());
   }
 }
